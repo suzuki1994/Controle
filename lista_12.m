@@ -15,6 +15,7 @@ FTMF = Gz/(1+(Gz*Hz));
 
 Tf = 35;
 k = 0:Tf/T;
+rk = ones(length(k));
 
 ak(1) = 0;
 bk(1) = 0;
@@ -33,7 +34,7 @@ end
 figure(1); hold on;
 step(FTMF,'b');
 stairs(k*T,ck,'r');
-hold off; legend('FT de malha fechada','Equação Recursiva C(kT)');
+hold off; legend('FT de malha fechada','EquaÃ§Ã£o Recursiva C(kT)');
 
 figure(2); hold on;
 stairs(k*T,ak);
