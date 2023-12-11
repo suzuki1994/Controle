@@ -1,19 +1,16 @@
-# README Periféricos GPIO
+# MorseCode Numbers
 
-Este é um README para documentar os periféricos presentes na pasta GPIO.
+Esta implementação contempla o uso de um módulo buzzer (figura abaixo) como periférico. Que recebe um sinal de entrada e converte para um sinal sonoro itermitente que é representado por pontos e traços. Atualmente está implementado os números do código morse.
+#modulo buzzer 
 
-## GPIO
+O ponto tem o periodo de T e o traço 3T emitindo som, intervalo entre caracter tem 3T e entre palavras 7T. O período T pode variar de acordo com a experiência do operador de código morse.
+#imagem da tabela de codigo morse numeros 
 
-O *GPIO* (General Purpose Input/Output) é responsável por lidar um GPIO de propósito geral. Ele é utilizado para trabalhar com interrupções, registradores de entrada e registradores de saída.
+Este periférico possui 3 pinos, VCC de 3V3, GND e o pino de controle, no qual envia um sinal que emite som quando '0' e fica sem som quando '1'
 
-## LED Displays
+Utilizou-se uma tabela para converter a entrada em pontos e traços (pontos são represnetados por '0' traços representados por '1') e uma maquina de estados para realizar os diferentes periodos de operação 
 
-O *led_displays* converte um valor presente no *ddata_w* para ser apresentado em um display de 7 segmentos presente na placa de10lite. Esse componente é responsável por exibir o valor desejado no display de forma apropriada(o valor será exibido no display na base hexadecimal).
+#imagem da maquina de estados 
 
-## Temp
-
-O *temp.vhd* é responsável por converter um valor para a base decimal e apresentá-lo em um display de 7 segmentos. Foi criada uma função para converter o valor presente em *ddata_w* na base decimal e, em seguida, apresentar o valor convertido no display de 7 segmentos.
-
-A função recebe o valor presente em *ddata_w* e o transforma em um número na base decimal. No caso desse projeto, a leitura é feita usando um conversor analógico-digital (ADC) conectado a um sensor de temperatura (LM35). A função basicamente subtrai 10 do valor da variável *temp* e possui um contador responsável por registrar quantas vezes 10 foi subtraído do valor de *temp*. Se *temp* for menor que 10, o programa sai do loop.
-
-A função retorna o valor do contador e, em seguida, o valor convertido é enviado para outra função responsável por apresentar o valor em decimal no display de 7 segmentos. No arquivo *temp.vhd*, esse componente é utilizado para apresentar a temperatura medida pelo sensor nos displays de 7 segmentos, tanto em graus Celsius como em graus Fahrenheit (por exemplo, 12°C/53°F).
+# Simulação
+A primeira simulação foi feita ainda antes do periférico ser implementado no projeto como um todo e pode ser visto nos arquivos [testbench2.vhd](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/testbench2.vhd) e [testbench2.do](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/testbench2.do)
